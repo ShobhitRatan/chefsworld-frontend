@@ -73,6 +73,9 @@ class App extends Component {
       return <SignupForm
         handleSubmit={this.handleRegisterSubmit}
       />
+    } 
+    else if (routerProps.location.pathname === "/logout") {
+      return <LoginForm handleSubmit = {this.handleLoginSubmit} /> 
     }
   }
 
@@ -100,7 +103,7 @@ class App extends Component {
                 <NavBar user={this.state.user} clickHandler={this.logOutHandler}/> 
                   <Switch>
                     <Route path="/login" render={this.renderForm} /> 
-                    <Route path="/logout" exact component={Home} /> 
+                    <Route path="/logout" render={this.renderForm} />  
                     <Route path="/register" render={this.renderForm} /> 
                     <Route path="/profile" render={this.renderProfile} />
                     <Route path="/" exact component={Home} />
