@@ -28,11 +28,11 @@ class LoginForm extends Component {
         <h1>Login Form</h1>
         <Form.Group controlId="formGroupUsername">
           <Form.Label>Username(email): </Form.Label> 
-          <Form.Control onChange={this.handleChange} type="text" autoComplete="off" name="email" value={email} /> 
+          <Form.Control onChange={this.handleChange} type="text"  name="email" value={email} /> 
         </Form.Group>
         <Form.Group controlId="formGroupPassword">
           <Form.Label>Password</Form.Label> 
-          <Form.Control onChange={this.handleChange} type="password" autoComplete="off" name="password" value={password} />
+          <Form.Control onChange={this.handleChange} type="password"  name="password" value={password} />
         </Form.Group>
         <Button variant="primary" type="submit">Submit</Button>
       </Form>

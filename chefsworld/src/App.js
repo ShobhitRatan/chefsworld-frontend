@@ -9,9 +9,19 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import NavBar from './components/NavBar'
 import LoginForm from './components/LoginForm'
+import RecipesContainer from './RecipesComponents/RecipesContainer' 
 class App extends Component {
   state = {
-    user: null
+    user: {
+      id: 0,
+      email: "",
+      name: "",
+      addresses: [], 
+      work_experiences: [], 
+      educations: [], 
+      awards: []
+    },
+    token: ""
   }
 
   componentDidMount() {
@@ -79,9 +89,177 @@ class App extends Component {
     }
   }
 
+  addOneAddress = (address) => {
+    let newAddresses = [...this.state.user.addresses, address] 
+    let newUser = {
+      ...this.state.user,
+      addresses: newAddresses 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  addOneExperience = (work_experience) => {
+    let newWorkExperiences = [...this.state.user.work_experiences, work_experience] 
+    let newUser = {
+      ...this.state.user,
+      work_experiences: newWorkExperiences 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  addOneEducation = (education) => {
+    let newEducations = [...this.state.user.educations, education] 
+    let newUser = {
+      ...this.state.user,
+      educations: newEducations 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  addOneAward = (award) => {
+    let newAwards = [...this.state.user.awards, award] 
+    let newUser = {
+      ...this.state.user, 
+      awards: newAwards 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  updateOneAddress = (updatedAddressInstance) => {
+    let newAddresses = this.state.user.addresses.map((address) => {
+      if (address.id === updatedAddressInstance.id) {
+        return updatedAddressInstance
+      }
+      else {
+        return address 
+      }
+    })
+    let newUser = {
+      ...this.state.user,
+      addresses: newAddresses 
+    } 
+    this.setState({
+      user: newUser 
+    })
+  } 
+
+  updateOneExperience = (updatedWorkExperienceInstance) => {
+    let newWorkExperiences = this.state.user.work_experiences.map((work_experience) => {
+      if (work_experience.id === updatedWorkExperienceInstance.id) {
+        return updatedWorkExperienceInstance 
+      }
+      else {
+        return work_experience
+      }
+    })
+    let newUser = {
+      ...this.state.user,
+      work_experiences: newWorkExperiences 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  updateOneEducation = (updatedEducationInstance) => {
+    let newEducations = this.state.user.educations.map(education => {
+      if (education.id === updatedEducationInstance.id) {
+        return updatedEducationInstance
+      }
+      else {
+        return education 
+      }
+    })
+    let newUser = {
+      ...this.state.user, 
+      educations: newEducations 
+    }
+    this.setState({
+      user: newUser
+    })
+  }
+
+  updateOneAward = (updatedAwardInstance) => {
+    let newAwards = this.state.user.awards.map(award => {
+      if (award.id === updatedAwardInstance.id) {
+        return updatedAwardInstance 
+      }
+      else {
+        return award 
+      }
+    })
+    let newUser = {
+      ...this.state.user, 
+      awards: newAwards 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  deleteAddressFromUser = (idFromChild) => {
+    let newAddresses = this.state.user.addresses.filter((address) => {
+      return address.id !== idFromChild
+    })
+    let newUser = {
+      ...this.state.user, 
+      addresses: newAddresses
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  deleteWorkExperienceFromUser = (idFromChild) => {
+    let newWorkExperiences = this.state.user.work_experiences.filter((work_experience) => {
+      return work_experience.id !== idFromChild 
+    })
+    let newUser = {
+      ...this.state.user,
+      work_experiences: newWorkExperiences 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  deleteEducationFromUser = (idFromChild) => {
+    let newEducations = this.state.user.educations.filter(education => {
+      return education.id !== idFromChild 
+    })
+    let newUser = {
+      ...this.state.user,
+      educations: newEducations 
+    }
+    this.setState({
+      user: newUser 
+    })
+  }
+
+  deleteAwardFromUser = (idFromChild) => {
+    let newAwards = this.state.user.awards.filter(award => {
+      return award.id !== idFromChild 
+    })
+    let newUser = {
+      ...this.state.user,
+      awards: newAwards 
+    }
+    this.setState({
+      user: newUser  
+    })
+  }
+  
   renderProfile = (routerProps) => {
     if (this.state.token) {
-      return <ProfileContainer user={this.state.user} token={this.state.token} /> 
+      return <ProfileContainer user={this.state.user} token={this.state.token} addOneAddress={this.addOneAddress} addOneExperience={this.addOneExperience} addOneEducation={this.addOneEducation} addOneAward={this.addOneAward} updateOneAddress={this.updateOneAddress} updateOneExperience={this.updateOneExperience} updateOneEducation={this.updateOneEducation} updateOneAward={this.updateOneAward} deleteAddressFromUser={this.deleteAddressFromUser} deleteWorkExperienceFromUser={this.deleteWorkExperienceFromUser} deleteEducationFromUser={this.deleteEducationFromUser} deleteAwardFromUser={this.deleteAwardFromUser} />  
     }
     else {
       this.props.history.push("/login") 
@@ -91,7 +269,10 @@ class App extends Component {
   logOutHandler = () => {
     localStorage.removeItem("token")
     this.props.history.push("/login") 
-    this.setState({user: null})
+    this.setState({
+      user: null,
+      token: ''
+    })
   } 
 
   render(){
@@ -107,6 +288,7 @@ class App extends Component {
                     <Route path="/register" render={this.renderForm} /> 
                     <Route path="/profile" render={this.renderProfile} />
                     <Route path="/" exact component={Home} />
+                    <Route path="/recipes" render={() => <RecipesContainer user={this.state.user} userId={this.state.user.id} />} />
                     <Route render={() => <p>Page not Found</p>} /> 
                   </Switch>
               </Container>

@@ -12,17 +12,16 @@ const NavBar = (props) => {
                 <NavLink to="/register">Register</NavLink>
             </Nav.Item> 
             <Nav.Item>
+                <NavLink to="/recipes">Recipes</NavLink>
+            </Nav.Item>
+            <Nav.Item>
                 <NavLink to="/profile">Profile</NavLink>
             </Nav.Item>
-            
             <Nav.Item>
             {props.user ? <NavLink to="/logout" onClick={props.clickHandler}>Logout</NavLink>:
                 <NavLink to="/login">Login</NavLink>
             }   
             </Nav.Item>
-            {/* <Nav.Item>
-                <NavLink to="/recipes">Recipes</NavLink>
-            </Nav.Item> */}
         </Nav>
     );
 }
