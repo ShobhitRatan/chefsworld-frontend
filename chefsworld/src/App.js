@@ -10,8 +10,10 @@ import Container from 'react-bootstrap/Container'
 import NavBar from './components/NavBar'
 import LoginForm from './components/LoginForm'
 import RecipesContainer from './RecipesComponents/RecipesContainer' 
+const users_url = "http://localhost:4000/users"
 class App extends Component {
   state = {
+    users: [], 
     user: {
       id: 0,
       email: "",
@@ -52,7 +54,7 @@ class App extends Component {
 
 
   handleRegisterSubmit = (userInfo) => {
-    fetch("http://localhost:4000/users", {
+    fetch(users_url, {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -61,6 +63,35 @@ class App extends Component {
     })
       .then(r => r.json())
       .then(this.handleResponse)
+  }
+
+  updateUser = user => {
+    fetch(`${users_url}/${user.id}`, {
+      method: "PATCH", 
+      headers: {
+        'Content-Type': 'application/json', 
+        Accept: 'application/json'
+      },
+      body: JSON.stringify(user) 
+    })
+    .then(res => res.json()) 
+    .then(updatedUserObject => {
+      this.updateOneUser(updatedUserObject)
+    })
+  }
+
+  updatedOneUser = updatedUserInstance => {
+    let newUsers = this.state.users.map(user => {
+      if (user.id === updatedUserInstance.id) {
+        return updatedUserInstance
+      }
+      else {
+        return user 
+      }
+    })
+    this.setState({
+      users: newUsers 
+    })
   }
 
   handleResponse = (resp) => {
@@ -259,7 +290,7 @@ class App extends Component {
   
   renderProfile = (routerProps) => {
     if (this.state.token) {
-      return <ProfileContainer user={this.state.user} token={this.state.token} addOneAddress={this.addOneAddress} addOneExperience={this.addOneExperience} addOneEducation={this.addOneEducation} addOneAward={this.addOneAward} updateOneAddress={this.updateOneAddress} updateOneExperience={this.updateOneExperience} updateOneEducation={this.updateOneEducation} updateOneAward={this.updateOneAward} deleteAddressFromUser={this.deleteAddressFromUser} deleteWorkExperienceFromUser={this.deleteWorkExperienceFromUser} deleteEducationFromUser={this.deleteEducationFromUser} deleteAwardFromUser={this.deleteAwardFromUser} />  
+      return <ProfileContainer user={this.state.user} token={this.state.token} updateUser={this.updateUser} addOneAddress={this.addOneAddress} addOneExperience={this.addOneExperience} addOneEducation={this.addOneEducation} addOneAward={this.addOneAward} updateOneAddress={this.updateOneAddress} updateOneExperience={this.updateOneExperience} updateOneEducation={this.updateOneEducation} updateOneAward={this.updateOneAward} deleteAddressFromUser={this.deleteAddressFromUser} deleteWorkExperienceFromUser={this.deleteWorkExperienceFromUser} deleteEducationFromUser={this.deleteEducationFromUser} deleteAwardFromUser={this.deleteAwardFromUser} />  
     }
     else {
       this.props.history.push("/login") 

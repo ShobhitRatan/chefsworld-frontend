@@ -8,6 +8,7 @@ import EducationForm from './EducationForm'
 import Education from './Education'
 import AwardForm from './AwardForm'
 import Award from './Award'
+import EditUserForm from './EditUserForm'
 const addresses_url = "http://localhost:4000/addresses" 
 const experiences_url = "http://localhost:4000/work_experiences" 
 const educations_url = "http://localhost:4000/educations"
@@ -18,7 +19,9 @@ class ProfileContainer extends Component {
         displayAddress: false, 
         displayExperience: false, 
         displayEducation: false, 
-        displayAward: false 
+        displayAward: false, 
+        displayUser: false, 
+        user: this.props.user 
     }
 
     handleDisplayAddress = () => {
@@ -39,6 +42,13 @@ class ProfileContainer extends Component {
         const val = this.state.displayEducation 
         this.setState({
             displayEducation: !val 
+        })
+    }
+
+    handleDisplayUser = () => {
+        const val = this.state.displayUser 
+        this.setState({
+            displayUser: !val 
         })
     }
 
@@ -233,7 +243,9 @@ class ProfileContainer extends Component {
         console.log(this.state.user) 
         return (
             <div>
-                <h2>{this.props.user.name}&apos;s Profile</h2>
+                {this.state.displayUser ? <EditUserForm updateUser={this.props.updateUser} user={this.props.user} key={this.props.user.id} /> : null} 
+                <Button variant="info" onClick={this.handleDisplayUser}>Edit User</Button>
+                <h2>{this.state.user.name}&apos;s Profile</h2>
                 {this.state.displayAddress ? <AddressForm addAddress={this.addAddress} token={this.props.token} /> : null } 
                 <Button variant="primary" onClick={this.handleDisplayAddress}>Add an Address</Button>  
                 {this.props.user.addresses.map(address => <Address address={address} key={address.id} updateAddress={this.updateAddress} token={this.props.token} deleteAddress={this.deleteAddress} />)} 
