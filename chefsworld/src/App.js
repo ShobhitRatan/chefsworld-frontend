@@ -5,6 +5,7 @@ import ProfileContainer from './ProfileComponents/ProfileContainer'
 import {Switch, Route} from 'react-router-dom'
 import {withRouter} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'semantic-ui-css/semantic.min.css'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import NavBar from './components/NavBar'

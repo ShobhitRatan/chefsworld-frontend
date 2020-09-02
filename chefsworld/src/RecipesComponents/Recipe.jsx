@@ -37,6 +37,7 @@ class Recipe extends Component {
         this.props.deleteRecipe(this.props.recipe.id) 
     }
     render() {
+        
         return (
             <div>
                 <CardDeck>

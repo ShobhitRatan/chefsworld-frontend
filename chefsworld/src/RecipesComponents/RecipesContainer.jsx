@@ -9,20 +9,19 @@ import RecipeForm from './RecipeForm'
 import Button from 'react-bootstrap/Button'
 const recipes_url = "http://localhost:4000/recipes" 
 const comments_url = "http://localhost:4000/comments" 
+
 class RecipesContainer extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            offset: 0, 
-            recipes: [],
-            perPage: 20, 
-            currentPage: 0, 
+            page: 1,
+            totalPages: 151,   
+            recipes: [],   
             searchTerm: "", 
             cuisine: "All",  
             comments: [],
             display: false, 
         }
-        this.handlePageClick = this.handlePageClick.bind(this); 
     }
     handleDisplay = () => {
         const val = !this.state.display 
@@ -36,7 +35,9 @@ class RecipesContainer extends Component {
     }
 
     receivedData = () => {
-        axios.get(recipes_url) 
+        const url = recipes_url + "?page=" + this.state.page.toString()   
+        console.log(url)
+        axios.get(url)   
         .then(res => {
             const data = res.data;
             this.setState({
@@ -60,19 +61,35 @@ class RecipesContainer extends Component {
         return filteredRecipes
     } 
 
-    slicedRecipes = () => {
-        return this.filteredRecipes().slice(this.state.offset, this.state.offset + this.state.perPage)  
-    }
+    // slicedRecipes = () => {
+    //     return this.filteredRecipes().slice(this.state.offset, this.state.offset + this.state.perPage)  
+    // }
 
-    pageCount = () => {
-        let pageCount = Math.ceil(this.filteredRecipes().length / this.state.perPage) 
-        return pageCount ? pageCount : undefined 
-    }
+    // pageCount = () => {
+    //     let pageCount = Math.ceil(this.filteredRecipes().length / this.state.perPage) 
+    //     return pageCount ? pageCount : 151  
+    // }
 
-    handlePageClick = (e, {activePage}) => {
-        let 
-    }
+    // handlePageClickPrev = (e) => {
+    //     let page = this.state.page - 1 
+    //     this.setState({
+    //         page: page
+    //     }, () => {this.receivedData()}) 
+    // }
 
+    // handlePageClickNext = (e) => {
+    //     let page = this.state.page + 1 
+    //     this.setState({
+    //         page: page
+    //     }, () => {this.receivedData()}) 
+    // }
+
+    handlePageClick = (e) => {
+        let page = e.selected + 1
+        this.setState({
+            page: page 
+        }, () => {this.receivedData()})
+    }
     handleSearch = (e) => {
         this.setState({
             searchTerm: e.target.value 
@@ -258,25 +275,26 @@ class RecipesContainer extends Component {
                     nextLabel = {"next"} 
                     breakLabel = {"..."} 
                     breakClassName = {"break-me"} 
-                    pageCount = {this.pageCount()} 
+                    pageCount = {this.state.totalPages} 
                     marginPagesDisplayed = {2} 
                     pageRangeDisplayed = {5} 
                     onPageChange = {this.handlePageClick} 
                     containerClassName = {"pagination"} 
                     subContainerClassName = {"pages pagination"} 
                     activeClassName = {"active"} /> 
-                
+                {/* <Button variant="primary" onClick={this.handlePageClickPrev}>Prev</Button>
+                <Button variant="secondary" onClick={this.handlePageClickNext}>Next</Button><br/><br/><br/> */}
                 {this.state.display ? <RecipeForm addRecipe={this.addRecipe} /> : null} 
                 <Button variant="primary" onClick={this.handleDisplay}>Add a Recipe</Button> 
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} /> 
-                <FilteredRecipesContainer recipes={this.slicedRecipes()} updateRecipe={this.updateRecipe} deleteRecipe={this.deleteRecipe} addComment={this.addComment} increaseLikes={this.increaseLikes}  deleteComment={this.deleteComment}/> 
+                <FilteredRecipesContainer recipes={this.filteredRecipes()} updateRecipe={this.updateRecipe} deleteRecipe={this.deleteRecipe} addComment={this.addComment} increaseLikes={this.increaseLikes}  deleteComment={this.deleteComment}/> 
                 <ReactPaginate 
                     previousLabel={"prev"} 
                     nextLabel = {"next"} 
                     breakLabel = {"..."} 
                     breakClassName = {"break-me"} 
-                    pageCount = {this.pageCount()} 
+                    pageCount = {this.state.totalPages} 
                     marginPagesDisplayed = {2} 
                     pageRangeDisplayed = {5} 
                     onPageChange = {this.handlePageClick} 
