@@ -69,15 +69,8 @@ class RecipesContainer extends Component {
         return pageCount ? pageCount : undefined 
     }
 
-    handlePageClick = (e) => {
-        const selectedPage = e.selected; 
-        const offset = selectedPage * this.state.perPage; 
-        this.setState({
-            currentPage: selectedPage, 
-            offset: offset 
-        }, () => {
-            this.receivedData()
-        })
+    handlePageClick = (e, {activePage}) => {
+        let 
     }
 
     handleSearch = (e) => {

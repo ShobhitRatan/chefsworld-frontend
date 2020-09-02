@@ -43,7 +43,7 @@ class Recipe extends Component {
                     <Card key={this.props.recipe.id}> 
                         <Card.Img variant="top" onClick={(e) => this.handleClick(e)} src={this.props.recipe.image_url} /> 
                         <Card.Body>
-                            <Card.Title>{this.props.recipe.label}</Card.Title> 
+                            <Card.Title>{this.props.recipe.label} - {this.props.recipe.user.name}</Card.Title> 
                             <Card.Text>{this.props.recipe.cuisine}</Card.Text>
                             <Card.Text>{this.props.recipe.meal}</Card.Text>
                             <Card.Text>{this.props.recipe.dish}</Card.Text>
