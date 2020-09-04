@@ -10,16 +10,9 @@ class Recipe extends Component {
     state = {
         showSource: true, 
         display: false, 
-        commentDisplay: false, 
-        followDisplay: false 
+        commentDisplay: false,   
     } 
 
-    handleFollowDisplay = () => {
-        const val = this.state.followDisplay 
-        this.setState({
-            followDisplay: !val 
-        })
-    }
 
     handleClick = (e) => {
         const val = this.state.showSource 
@@ -44,6 +37,7 @@ class Recipe extends Component {
     handleDelete = (e) => {
         this.props.deleteRecipe(this.props.recipe.id) 
     }
+
     render() {
         
         return (

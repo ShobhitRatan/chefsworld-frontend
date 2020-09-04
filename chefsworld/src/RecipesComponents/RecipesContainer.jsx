@@ -277,7 +277,7 @@ class RecipesContainer extends Component {
                 <Button variant="primary" onClick={this.handleDisplay}>Add a Recipe</Button> 
                 <SearchBar searchTerm={this.state.searchTerm} handleChange={this.handleSearch} /> 
                 <Filter handleSelection={this.handleSelection} /> 
-                <FilteredRecipesContainer recipes={this.slicedRecipes()} updateRecipe={this.updateRecipe} deleteRecipe={this.deleteRecipe} addComment={this.addComment} increaseLikes={this.increaseLikes}  deleteComment={this.deleteComment}/> 
+                <FilteredRecipesContainer recipes={this.slicedRecipes()} updateRecipe={this.updateRecipe} deleteRecipe={this.deleteRecipe} addComment={this.addComment} increaseLikes={this.increaseLikes} deleteComment={this.deleteComment}/> 
                 <ReactPaginate 
                     previousLabel={"prev"} 
                     nextLabel = {"next"} 

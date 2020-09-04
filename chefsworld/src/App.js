@@ -24,9 +24,7 @@ class App extends Component {
       addresses: [], 
       work_experiences: [], 
       educations: [], 
-      awards: [], 
-      followers: [], 
-      followees: []
+      awards: []
     },
     token: ""
   }
@@ -135,6 +133,7 @@ class App extends Component {
       user: newUser 
     })
   }
+
 
   addOneExperience = (work_experience) => {
     let newWorkExperiences = [...this.state.user.work_experiences, work_experience] 
@@ -293,6 +292,7 @@ class App extends Component {
     })
   }
   
+
   renderProfile = (routerProps) => {
     if (this.state.token) {
       return <ProfileContainer user={this.state.user} token={this.state.token} updateUser={this.updateUser} addOneAddress={this.addOneAddress} addOneExperience={this.addOneExperience} addOneEducation={this.addOneEducation} addOneAward={this.addOneAward} updateOneAddress={this.updateOneAddress} updateOneExperience={this.updateOneExperience} updateOneEducation={this.updateOneEducation} updateOneAward={this.updateOneAward} deleteAddressFromUser={this.deleteAddressFromUser} deleteWorkExperienceFromUser={this.deleteWorkExperienceFromUser} deleteEducationFromUser={this.deleteEducationFromUser} deleteAwardFromUser={this.deleteAwardFromUser} />  

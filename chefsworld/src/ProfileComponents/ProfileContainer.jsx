@@ -10,13 +10,11 @@ import AwardForm from './AwardForm'
 import Award from './Award'
 import EditUserForm from './EditUserForm'
 import Image from 'react-bootstrap/Image'
-import Followee from './Followee'
 const addresses_url = "https://chefsworld-backend.herokuapp.com/addresses" 
 const experiences_url = "https://chefsworld-backend.herokuapp.com/work_experiences" 
 const educations_url = "https://chefsworld-backend.herokuapp.com/educations"
 const awards_url = "https://chefsworld-backend.herokuapp.com/awards"
-const follow_url = "https://chefsworld-backend.herokuapp.com/users/1/follow"
-const unfollow_url = "https://chefsworld-backend.herokuapp.com/users/1/unfollow" 
+
 class ProfileContainer extends Component {
     state = {
         displayAddress: false, 
@@ -134,16 +132,7 @@ class ProfileContainer extends Component {
         })
     }
 
-    followUser = (user) => {
-        fetch(follow_url, {
-            method: "POST", 
-            headers: {
-                "Content-Type": 'application/json', 
-                Accept: 'application/json', 
-                'Authorization': this.props.token 
-            }
-        })
-    }
+    
 
     updateAddress = address => {
         fetch(`${addresses_url}/${address.id}`, {
@@ -268,8 +257,6 @@ class ProfileContainer extends Component {
                 <Button variant="info" onClick={this.handleDisplayUser}>Edit User</Button>
                 <h2>{this.state.user.name}&apos;s Profile</h2>
                 <Image src={this.state.displayImage ? this.props.user.image_1 : this.props.user.image_2} onClick={(e) => this.handleDisplayImage(e)} thumbnail/> 
-                <h2>Followers: </h2>
-                {this.props.user.followees.map(followee => <Followee key={followee.id} followee={followee} />) }
                 {this.state.displayAddress ? <AddressForm addAddress={this.addAddress} token={this.props.token} /> : null } 
                 <Button variant="primary" onClick={this.handleDisplayAddress}>Add an Address</Button>  
                 {this.props.user.addresses.map(address => <Address address={address} key={address.id} updateAddress={this.updateAddress} token={this.props.token} deleteAddress={this.deleteAddress} />)} 
