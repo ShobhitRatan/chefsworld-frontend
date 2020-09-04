@@ -10,8 +10,16 @@ class Recipe extends Component {
     state = {
         showSource: true, 
         display: false, 
-        commentDisplay: false
+        commentDisplay: false, 
+        followDisplay: false 
     } 
+
+    handleFollowDisplay = () => {
+        const val = this.state.followDisplay 
+        this.setState({
+            followDisplay: !val 
+        })
+    }
 
     handleClick = (e) => {
         const val = this.state.showSource 

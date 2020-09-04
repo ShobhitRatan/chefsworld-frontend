@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container'
 import NavBar from './components/NavBar'
 import LoginForm from './components/LoginForm'
 import RecipesContainer from './RecipesComponents/RecipesContainer' 
-const users_url = "http://localhost:4000/users"
+const users_url = "https://chefsworld-backend.herokuapp.com/users/"
 class App extends Component {
   state = {
     users: [], 
@@ -19,10 +19,14 @@ class App extends Component {
       id: 0,
       email: "",
       name: "",
+      image_1: "",
+      image_2: "",
       addresses: [], 
       work_experiences: [], 
       educations: [], 
-      awards: []
+      awards: [], 
+      followers: [], 
+      followees: []
     },
     token: ""
   }
@@ -30,7 +34,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token")
     if(token){
-      fetch("http://localhost:4000/users/stay_logged_in",{
+      fetch("https://chefsworld-backend.herokuapp.com/users/stay_logged_in",{
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`
@@ -42,7 +46,7 @@ class App extends Component {
   }
 
   handleLoginSubmit = (userInfo) => {
-    fetch("http://localhost:4000/login", {
+    fetch("https://chefsworld-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
         "content-type": "application/json"

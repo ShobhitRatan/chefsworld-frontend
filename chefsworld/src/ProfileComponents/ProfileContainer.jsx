@@ -9,18 +9,22 @@ import Education from './Education'
 import AwardForm from './AwardForm'
 import Award from './Award'
 import EditUserForm from './EditUserForm'
-const addresses_url = "http://localhost:4000/addresses" 
-const experiences_url = "http://localhost:4000/work_experiences" 
-const educations_url = "http://localhost:4000/educations"
-const awards_url = "http://localhost:4000/awards"
-
+import Image from 'react-bootstrap/Image'
+import Followee from './Followee'
+const addresses_url = "https://chefsworld-backend.herokuapp.com/addresses" 
+const experiences_url = "https://chefsworld-backend.herokuapp.com/work_experiences" 
+const educations_url = "https://chefsworld-backend.herokuapp.com/educations"
+const awards_url = "https://chefsworld-backend.herokuapp.com/awards"
+const follow_url = "https://chefsworld-backend.herokuapp.com/users/1/follow"
+const unfollow_url = "https://chefsworld-backend.herokuapp.com/users/1/unfollow" 
 class ProfileContainer extends Component {
     state = {
         displayAddress: false, 
         displayExperience: false, 
         displayEducation: false, 
         displayAward: false, 
-        displayUser: false, 
+        displayUser: false,
+        displayImage: true,   
         user: this.props.user 
     }
 
@@ -28,6 +32,13 @@ class ProfileContainer extends Component {
         const val = this.state.displayAddress 
         this.setState({
             displayAddress: !val 
+        })
+    }
+
+    handleDisplayImage = () => {
+        const val = this.state.displayImage 
+        this.setState({
+            displayImage: !val 
         })
     }
 
@@ -120,6 +131,17 @@ class ProfileContainer extends Component {
         .then(res => res.json()) 
         .then(newlyCreatedAward => {
             this.props.addOneAward(newlyCreatedAward) 
+        })
+    }
+
+    followUser = (user) => {
+        fetch(follow_url, {
+            method: "POST", 
+            headers: {
+                "Content-Type": 'application/json', 
+                Accept: 'application/json', 
+                'Authorization': this.props.token 
+            }
         })
     }
 
@@ -239,13 +261,15 @@ class ProfileContainer extends Component {
         })
     }
 
-    render() {
-        console.log(this.state.user) 
+    render() { 
         return (
             <div>
                 {this.state.displayUser ? <EditUserForm updateUser={this.props.updateUser} user={this.props.user} key={this.props.user.id} /> : null} 
                 <Button variant="info" onClick={this.handleDisplayUser}>Edit User</Button>
                 <h2>{this.state.user.name}&apos;s Profile</h2>
+                <Image src={this.state.displayImage ? this.props.user.image_1 : this.props.user.image_2} onClick={(e) => this.handleDisplayImage(e)} thumbnail/> 
+                <h2>Followers: </h2>
+                {this.props.user.followees.map(followee => <Followee key={followee.id} followee={followee} />) }
                 {this.state.displayAddress ? <AddressForm addAddress={this.addAddress} token={this.props.token} /> : null } 
                 <Button variant="primary" onClick={this.handleDisplayAddress}>Add an Address</Button>  
                 {this.props.user.addresses.map(address => <Address address={address} key={address.id} updateAddress={this.updateAddress} token={this.props.token} deleteAddress={this.deleteAddress} />)} 
