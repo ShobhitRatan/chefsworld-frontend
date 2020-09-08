@@ -19,8 +19,7 @@ class RecipesContainer extends Component {
             currentPage: 0, 
             searchTerm: "", 
             cuisine: "All", 
-            dish: "All", 
-            meal: "All",  
+            meal: "All",   
             comments: [],
             display: false, 
         }
@@ -52,12 +51,20 @@ class RecipesContainer extends Component {
         let {recipes, cuisine} = this.state 
         return cuisine === "All" ? recipes : recipes.filter(recipe => recipe.cuisine === cuisine) 
     } 
+
     
+
+    mealFilter = () => {
+        let {meal} = this.state 
+        return meal === "All" ? this.cuisineFilter() : this.cuisineFilter().filter(recipe => recipe.meal === meal) 
+    }
+
     
     filteredRecipes = () => {
         let {searchTerm} = this.state   
-        let filteredRecipes = this.cuisineFilter().filter(recipe => recipe.label.toLowerCase().includes(searchTerm.toLowerCase()) 
-        || recipe.meal.toLowerCase().includes(searchTerm.toLowerCase()) 
+        let filteredRecipes = this.cuisineFilter().filter(recipe => recipe.label.toLowerCase().includes(searchTerm.toLowerCase())  
+        || recipe.dish.toLowerCase().includes(searchTerm.toLowerCase())) && 
+        this.mealFilter().filter(recipe => recipe.label.toLowerCase().includes(searchTerm.toLowerCase())  
         || recipe.dish.toLowerCase().includes(searchTerm.toLowerCase())) 
         return filteredRecipes
     } 

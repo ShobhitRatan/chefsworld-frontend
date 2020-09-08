@@ -6,7 +6,7 @@ class Filter extends Component {
             <>
             <nav>
                 <p>Filter by Cuisine Type: </p>
-                <select name="cuisine" onChange={e => this.props.handleSelection(e)} id="map">
+                <select name="cuisine" onChange={e => this.props.handleSelection(e)} className="map">
                     <option value="All">All</option>
                     <option value="american">american</option> 
                     <option value="asian">asian</option> 
@@ -26,6 +26,13 @@ class Filter extends Component {
                     <option value="south american">south american</option> 
                     <option value="south east asian">south east asian</option>
                     <option value="world">world</option>
+                </select>
+                <p>Filter by Meal Type: </p> 
+                <select name="meal" onChange={e => this.props.handleSelection(e)} className="map">
+                    <option value="All">All</option>
+                    <option value="breakfast">breakfast</option> 
+                    <option value="breakfast,lunch/dinner">breakfast,lunch/dinner</option>
+                    <option value="lunch/dinner">lunch/dinner</option> 
                 </select>
             </nav>
             </>

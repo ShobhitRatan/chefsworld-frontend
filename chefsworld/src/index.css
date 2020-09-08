@@ -43,6 +43,7 @@ code {
 }
 .map {
   text-align: center; 
+  margin: 20px 20px; 
 }
 .pagination>li.active>a {
   color: #fff; 
@@ -89,6 +90,10 @@ code {
   text-align: justify; 
   text-align-last: left; 
   position: relative; 
+}
+
+.card-link {
+  text-align-last: left; 
 }
 h1 {
   text-align: center; 
