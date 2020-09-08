@@ -15,6 +15,7 @@ code {
 
 .pagination {
   text-align: center; 
+  margin: 25px 348px 25px; 
 }
 .pagination > li {
   display: inline-block;
@@ -98,7 +99,7 @@ h1 {
   position: relative;
   display: flex; 
   justify-content: space-evenly;
-  margin: 25px 50px 75px 100px;
+  margin: 25px 25px;
 }
 nav {
   text-align: center; 
@@ -117,19 +118,23 @@ nav {
 .btn btn-success {
   display: flex; 
   align-items: inherit; 
-  margin: 25px 50px 75px 100px;
+  margin: 25px 50px;
 }
 
 .btn btn-primary {
   display: flex; 
   justify-content: space-evenly;
-  margin: 25px 50px 75px 100px;
+  margin: 50px 100px;
+}
+
+.btn btn-info {
+  margin: 50px 100px; 
 }
 
 .card-title h5 {
   display: flex; 
   align-items: flex-end; 
-  margin: 25px 50px 75px 100px;
+  margin: 50px 100px;
 }
 
 .card-deck {
@@ -142,4 +147,12 @@ nav {
 .container {
   margin: 50px 100px; 
   text-align: center;
+}
+
+.img-thumbnail {
+  margin: 10px; 
+}
+
+.userinfo {
+  margin: 10px 20px; 
 }

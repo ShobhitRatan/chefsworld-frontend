@@ -18,7 +18,9 @@ class RecipesContainer extends Component {
             perPage: 20, 
             currentPage: 0, 
             searchTerm: "", 
-            cuisine: "All",  
+            cuisine: "All", 
+            dish: "All", 
+            meal: "All",  
             comments: [],
             display: false, 
         }
@@ -256,7 +258,7 @@ class RecipesContainer extends Component {
     render() {
         console.log(this.filteredRecipes()) 
         return (
-            <div>
+            <div className="container">
             {this.props.user ? 
             <div>
                 <h1>Recipes</h1> 

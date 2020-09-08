@@ -255,7 +255,7 @@ class ProfileContainer extends Component {
             <div className="container"> 
                 {this.state.displayUser ? <EditUserForm updateUser={this.props.updateUser} user={this.props.user} key={this.props.user.id} /> : null} 
                 <Button variant="info" onClick={this.handleDisplayUser}>Edit User</Button>
-                <h2>{this.state.user.name}&apos;s Profile</h2>
+                <h2 className="userinfo">{this.state.user.name}&apos;s Profile</h2>
                 <Image src={this.state.displayImage ? this.props.user.image_1 : this.props.user.image_2} onClick={(e) => this.handleDisplayImage(e)} thumbnail/> 
                 {this.state.displayAddress ? <AddressForm addAddress={this.addAddress} token={this.props.token} /> : null } 
                 <Button variant="primary" onClick={this.handleDisplayAddress}>Add an Address</Button>  
