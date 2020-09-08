@@ -136,10 +136,10 @@ nav {
   display: flex;
   align-items: inherit;
   justify-content: space-between;
-  margin: 25px 50px 75px 100px; 
+  margin: 50px 100px; 
 }
 
 .container {
-  margin: 25px 50px 75px 100px; 
+  margin: 50px 100px; 
   text-align: center;
 }
