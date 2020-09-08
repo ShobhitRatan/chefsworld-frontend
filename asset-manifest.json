@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/chefsworld-frontend/static/css/main.d069818e.chunk.css",
+    "main.js": "/chefsworld-frontend/static/js/main.4600255c.chunk.js",
+    "main.js.map": "/chefsworld-frontend/static/js/main.4600255c.chunk.js.map",
+    "runtime-main.js": "/chefsworld-frontend/static/js/runtime-main.8b637755.js",
+    "runtime-main.js.map": "/chefsworld-frontend/static/js/runtime-main.8b637755.js.map",
+    "static/css/2.11829350.chunk.css": "/chefsworld-frontend/static/css/2.11829350.chunk.css",
+    "static/js/2.6af83bc2.chunk.js": "/chefsworld-frontend/static/js/2.6af83bc2.chunk.js",
+    "static/js/2.6af83bc2.chunk.js.map": "/chefsworld-frontend/static/js/2.6af83bc2.chunk.js.map",
+    "index.html": "/chefsworld-frontend/index.html",
+    "precache-manifest.b1ae7c0f0ab279e9c7a037e196eecc88.js": "/chefsworld-frontend/precache-manifest.b1ae7c0f0ab279e9c7a037e196eecc88.js",
+    "service-worker.js": "/chefsworld-frontend/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/chefsworld-frontend/static/css/2.11829350.chunk.css.map",
+    "static/css/main.d069818e.chunk.css.map": "/chefsworld-frontend/static/css/main.d069818e.chunk.css.map",
+    "static/js/2.6af83bc2.chunk.js.LICENSE.txt": "/chefsworld-frontend/static/js/2.6af83bc2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8b637755.js",
+    "static/css/2.11829350.chunk.css",
+    "static/js/2.6af83bc2.chunk.js",
+    "static/css/main.d069818e.chunk.css",
+    "static/js/main.4600255c.chunk.js"
+  ]
+}
