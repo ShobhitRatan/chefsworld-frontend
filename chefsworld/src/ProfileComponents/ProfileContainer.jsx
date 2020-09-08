@@ -252,7 +252,7 @@ class ProfileContainer extends Component {
 
     render() { 
         return (
-            <div>
+            <div className="container"> 
                 {this.state.displayUser ? <EditUserForm updateUser={this.props.updateUser} user={this.props.user} key={this.props.user.id} /> : null} 
                 <Button variant="info" onClick={this.handleDisplayUser}>Edit User</Button>
                 <h2>{this.state.user.name}&apos;s Profile</h2>

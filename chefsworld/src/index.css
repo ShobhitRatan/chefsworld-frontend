@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 code {
@@ -81,10 +82,12 @@ code {
   text-align: center; 
   font-weight: bold;
   text-transform: uppercase; 
+  position: relative;
 }
 .card-text {
   text-align: justify; 
   text-align-last: left; 
+  position: relative; 
 }
 h1 {
   text-align: center; 
@@ -92,28 +95,51 @@ h1 {
 
 .search {
   text-align: center; 
+  position: relative;
+  display: flex; 
+  justify-content: space-evenly;
+  margin: 25px 50px 75px 100px;
 }
 nav {
   text-align: center; 
+  position: relative;
 }
 
 .card-header {
   text-align: center; 
+  position: relative;
+  display: flex; 
+  justify-content: space-evenly;
+  margin: 25px 50px 75px 100px;
 }
 
-.btn {
-  text-align: center; 
+
+.btn btn-success {
+  display: flex; 
+  align-items: inherit; 
+  margin: 25px 50px 75px 100px;
 }
 
-.add-review-form {
-  width: 80%
+.btn btn-primary {
+  display: flex; 
+  justify-content: space-evenly;
+  margin: 25px 50px 75px 100px;
 }
 
-.input-text {
-  border-radius: 5px;
-  height: 2rem;
-  width: 60%;
-  font-size: 18px;
-  font-family: monospace;
-  margin: 3px;
+.card-title h5 {
+  display: flex; 
+  align-items: flex-end; 
+  margin: 25px 50px 75px 100px;
+}
+
+.card-deck {
+  display: flex;
+  align-items: inherit;
+  justify-content: space-between;
+  margin: 25px 50px 75px 100px; 
+}
+
+.container {
+  margin: 25px 50px 75px 100px; 
+  text-align: center;
 }
