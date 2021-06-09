@@ -103,9 +103,7 @@ class App extends Component {
       this.setState(resp, () => {
         this.props.history.push("/profile")
       })
-    } else {
-      // alert(resp.error)
-    }
+    } 
   }
 
   renderForm = (routerProps) => {
