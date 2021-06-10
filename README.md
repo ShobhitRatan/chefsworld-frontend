@@ -27,15 +27,18 @@
     <li>Ability to enter and update detailed professional experience as chef.</li> 
     <li>Ability to search recipes by type, cuisine, ratings, country and other parameters.</li>
     <li>Ability to add / modify new recipes to site.</li>
-    <li>Ability to like recipes</li>
-    <li>Ability to comment on recipes</li>
-    <li>Ability to have discussion on recipes</li>
+    <li>Ability to like recipes.</li>
+    <li>Ability to comment on recipes.</li>
+    <li>Ability to have discussion on recipes.</li>
+    <li>Dynamic Pagination</li> 
 </ul>
 <h2>Future Goals</h2>
 <ul>
     <li>Set up a payment gateway such as Stripe to handle payments.</li>
     <li>Ability to reply on previous comments (polymorphic relationship)</li>
+    <li>Implement backend pagination capability for faster response time</li>
     <li>Add an admin / superuser account to the website who can approve / deny chefs who don't maintain decorum on forums.</li>
     <li>Implement following functionality so that chefs can follow other chefs.</li>
     <li>Use Google Maps API  so that chefs can deliver recipes to other users based on geographic location.</li>
+    <li>Create a React Native version of the app for mobile phones</li>
 </ul>
